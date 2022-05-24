@@ -2,6 +2,8 @@
 
 ## Overview
 
+Test
+
 The topic for our final project involves analyzing video game trends to better understand what makes them successful upon release.
 
 Our group quickly realized we were assembled based on our passion for video games, so picking our research topic was not so demanding. The Steam platform is the largest digital distribution platform for PC gaming, and is a fantastic resource for examining gaming trends over the last decade. We will imagine that we have been approached by a company that plans to develop and release a new title on Steam's library. Our analyses will function as a valuable asset that may inform decisions regarding the company's budget and timing of release.
