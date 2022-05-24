@@ -38,9 +38,9 @@ We then used an ensemble learning technique (Random forest) to solve our regress
 We also added one new featured called ```length_of_time``` to our dataset.
 ```length_of_time``` was calculated by subracting todays date from the ```release_date```.
 
-Challenges:
--In order to properly subtract datetime objects, the dates must first be converted to a datetime datatype. This is accomplished well in the pre-processing phase; however, due to ```release_date``` having mixed timezones, Excel automatically converts those values to just objects or strings.
--It might be worth refactoring the pre-processing functions so that it converts all date values to a single time zone first so we don't run into this issue in the future.  
+**Challenges:**
+- In order to properly subtract datetime objects, the dates must first be converted to a datetime datatype. This is accomplished well in the pre-processing phase; however, due to ```release_date``` having mixed timezones, Excel automatically converts those values to just objects or strings.
+- It might be worth refactoring the pre-processing functions so that it converts all date values to a single time zone first so we don't run into this issue in the future.  
 
 
 
