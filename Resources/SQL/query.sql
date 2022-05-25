@@ -65,7 +65,7 @@ ON cl.steam_appid = de.steam_appid;
 
 ALTER TABLE final
 ADD COLUMN linear_score FLOAT,
-ADD COLUMN random_forest_score FLOAT;
-
+ADD COLUMN random_forest_score FLOAT,
+ADD COLUMN length_of_time INT;
 
 SELECT * FROM final;
