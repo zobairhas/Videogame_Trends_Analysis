@@ -30,7 +30,21 @@ PostgreSQL is the database management system that we plan to use to store our cl
 
 #### Machine Learning
 
-SciKitLearn is the ML library we'll be using to create a classifier.
+Scikit-learn(SKlearn) is a robust machine learning library that provides a selection of tools for statistical modeling.
+
+We intially used a regression model to see if we could find any meaningful correlations between a set of independent and dependent variables. ```total_ratings``` was a calcuation we made by finding the average of total ratings using ```positive_ratings``` and ```negative_ratings```.
+
+
+We then used an ensemble learning technique (Random forest) to solve our regression and classification problems. However, the end results were lack luster as the predicted value of the model was very low (2.3% accuracy).
+
+We also added one new featured called ```length_of_time``` to our dataset.
+```length_of_time``` was calculated by subracting todays date from the ```release_date```.
+
+**Challenges:**
+- In order to properly subtract datetime objects, the dates must first be converted to a datetime datatype. This is accomplished well in the pre-processing phase; however, due to ```release_date``` having mixed timezones, Excel automatically converts those values to just objects or strings.
+- It might be worth refactoring the pre-processing functions so that it converts all date values to a single time zone first so we don't run into this issue in the future.  
+
+
 
 #### Dashboard
 
