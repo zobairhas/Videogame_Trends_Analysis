@@ -67,3 +67,8 @@ ALTER TABLE final
 ADD COLUMN length_of_time INT;
 
 SELECT * FROM final;
+
+CREATE TABLE model_score (
+	linear_score FLOAT NOT NULL,
+	random_forest_score FLOAT NOT NULL
+);
