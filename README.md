@@ -436,6 +436,8 @@ We can repeat the code above to generate the same table for publishers.
 <details><summary>Click to expand screenshot</summary>
 <p>
 
+![games_df](https://user-images.githubusercontent.com/44425379/171479956-0036e97b-2d7a-4a6d-bc48-a7a2862aa5b5.png)
+
 </p>
 </details>
 
@@ -454,8 +456,8 @@ We can repeat the code above to generate the same table for publishers.
 
 <details><summary>Click to expand code and screenshot</summary>
 <p>
-```
-# Import Scikit-Learn library and intiate model
+
+```# Import Scikit-Learn library and intiate model
 from sklearn.linear_model import LinearRegression
 model = LinearRegression()
 
@@ -475,8 +477,7 @@ testing_score = model.score(X_test, y_test)
 print(f"Training Score: {training_score}")
 print(f"Testing Score: {testing_score}")
 ```
-
-<insert SS>
+![linear_model](https://user-images.githubusercontent.com/44425379/171479820-712a4c2f-f486-453e-a8ff-c49f0ed17c6c.png)
 </p>
 </details>
 
@@ -488,8 +489,8 @@ print(f"Testing Score: {testing_score}")
 
 <details><summary>Click to expand code and screenshot</summary>
 <p>
-```
-# Split the dataset into four arrays and into two categories: train and test
+
+```# Split the dataset into four arrays and into two categories: train and test
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size =.20, random_state=1)
 
@@ -504,8 +505,8 @@ from sklearn.metrics import accuracy_score,classification_report,confusion_matri
 y_predict = rf_clf.predict(X_test)
 accuracy_score(y_test,y_predict)
 ```
+![random_forest_model](https://user-images.githubusercontent.com/44425379/171479880-69cfd33d-1673-4bfc-9df2-2bb8408da4ab.png)
 
-<insert SS>
 </p>
 </details>
 
@@ -516,7 +517,7 @@ accuracy_score(y_test,y_predict)
 
 **Other Challenges:**
 - To subtract datetime objects, dates must be in a datetime format. The pre-processing script accomplishes this well; however, due to ```release_date``` having mixed timezones, Excel automatically converts those values to just objects or strings.
-- It might be worth refactoring the pre-processing function so all date values to a single time zone first so we don't run into this issue in the future.   
+- It might be worth refactoring the pre-processing function so all date values are converted to a single time zone first so we don't run into this issue in the future.   
 
 ## Dashboard
 
@@ -528,7 +529,7 @@ accuracy_score(y_test,y_predict)
 
 - The dashboard will have filters and dynamic tables that adapt to user input.
 
-#### References
+## References
 ```
 https://machinelearningknowledge.ai/python-sklearn-random-forest-classifier-tutorial-with-example/
 https://machinelearningmastery.com/linear-regression-for-machine-learning/
