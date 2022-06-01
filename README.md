@@ -425,19 +425,98 @@ We can repeat the code above to generate the same table for publishers.
 
 ## Machine Learning
 
-Scikit-learn(SKlearn) is a robust machine learning library that provides a selection of tools for statistical modeling.
+### Scikit-learn(SKlearn) Machine Learning Library
 
-We intially used a regression model to see if we could find any meaningful correlations between a set of independent and dependent variables. ```total_ratings``` was a calcuation we made by finding the average of total ratings using ```positive_ratings``` and ```negative_ratings```.
+- Scikit-learn(SKlearn) is a robust machine learning library that provides a selection of tools for statistical modeling.
+- Features were selected based on whether they could measure a game's sucess or not. Some features we used: ```price```, ```ratings```, ```average play time```, ```release year```, ```genre```, etc. 
+- We also created two features to include in the dataset: total_ratings and length_of_time.
+- ```total_ratings``` was a calculation we made by finding the average of ```positive_ratings``` and ```negative_ratings``` columns and then totaling those numbers together.
+- ```length_of_time``` was a calculation we made by subtracting today's date from the ```release_date``` column. 
 
-We then used an ensemble learning technique (Random forest) to solve our regression and classification problems. However, the end results were lack luster as the predicted value of the model was very low (2.3% accuracy).
+<details><summary>Click to expand screenshot</summary>
+<p>
 
-We also added one new featured called ```length_of_time``` to our dataset.
-```length_of_time``` was calculated by subracting todays date from the ```release_date```.
+</p>
+</details>
 
-**Challenges:**
+### SkLearn ```test_and_train()```
+- We divided the dataset using SkLearns ```test_and_train()``` method which splits the dataset into four arrays and into two categories called train and test.
+- We did an 80/20 split on the dataset. 
+- This means that 80% of the data will be trained by the model and 20% of the data will be used to evaluate the fit of our model.
+- By calculating the accuracy scores of our train and test sets, we can make some predictions on how the model will behave when new data is passed through.
 
-- In order to properly subtract datetime objects, the dates must first be converted to a datetime datatype. This is accomplished well in the pre-processing phase; however, due to ```release_date``` having mixed timezones, Excel automatically converts those values to just objects or strings.
-- It might be worth refactoring the pre-processing functions so that it converts all date values to a single time zone first so we don't run into this issue in the future.  
+
+### Linear Regression Model
+- We initially used a Linear Regression model as we thought we could find multiple relationships between our features (i.e. ```price```, ```length_of_time```, ```genre```) or input values and our primary output value ```total_ratings```
+- One assumption was that ```total_ratings``` would be much higher on a game that's been out for a longer time versus one that has not. 
+- Surprisingly, that was not the case, and both training and testing scores were low.
+- After trying out different input values, I could not find any real relationships with our output value.
+
+<details><summary>Click to expand code and screenshot</summary>
+<p>
+```
+# Import Scikit-Learn library and intiate model
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+
+# Assign variables
+X = games_df.iloc[:, -1].values.reshape(-1, 1)
+y = games_df.iloc[:, -2].values
+
+# Split the dataset into four arrays and into two categories: train and test
+# Did an 80/20 split
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.20, random_state=42)
+
+# Fit and train the model; print accuracy scores
+model.fit(X_train, y_train)
+training_score = model.score(X_train, y_train)
+testing_score = model.score(X_test, y_test)
+print(f"Training Score: {training_score}")
+print(f"Testing Score: {testing_score}")
+```
+
+<insert SS>
+</p>
+</details>
+
+### Random Forest Model
+- Since we could not find a linear relationship with our features, we decided to try out a classification model instead via Random forest.
+- It is a type of ensemble learning technique in which multiple decision trees come from the training dataset, and the majority output from them is considered the final output.
+- We hoped that a classification model would answer our questions since a linear model could not.
+- In the end, the results were pretty weak as the predicted value of the classifier model was just as low as the linear model.
+
+<details><summary>Click to expand code and screenshot</summary>
+<p>
+```
+# Split the dataset into four arrays and into two categories: train and test
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size =.20, random_state=1)
+
+# Import Scikit-Learn library and utilize RandomForestClassifier
+# to make a classifier model
+from sklearn.ensemble import RandomForestClassifier
+rf_clf = RandomForestClassifier(criterion='entropy')   
+rf_clf.fit(X_train,y_train)
+
+# Test accuracy of the model
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+y_predict = rf_clf.predict(X_test)
+accuracy_score(y_test,y_predict)
+```
+
+<insert SS>
+</p>
+</details>
+
+
+### What we could've done better
+- If we had more time, we would continue to refine the model. I think a deep learning model would have gone a long way here. Our dataset is pretty massive, and we only utilized a handful of continuous data.
+- Perhaps the question that we're trying to answer is too complex with the tools we're using.
+
+**Other Challenges:**
+- To subtract datetime objects, dates must be in a datetime format. The pre-processing script accomplishes this well; however, due to ```release_date``` having mixed timezones, Excel automatically converts those values to just objects or strings.
+- It might be worth refactoring the pre-processing function so all date values to a single time zone first so we don't run into this issue in the future.   
 
 ## Dashboard
 
@@ -448,3 +527,17 @@ We also added one new featured called ```length_of_time``` to our dataset.
 - Our dashboard will be structured in an organized way, with the most vital observations up front, and detailed analyses on specific games, developers, or periods of time towards the back, or nested in.
 
 - The dashboard will have filters and dynamic tables that adapt to user input.
+
+#### References
+```
+https://machinelearningknowledge.ai/python-sklearn-random-forest-classifier-tutorial-with-example/
+https://machinelearningmastery.com/linear-regression-for-machine-learning/
+https://towardsdatascience.com/introduction-to-machine-learning-algorithms-linear-regression-14c4e325882a
+https://pynative.com/python-difference-between-two-dates/
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html
+https://stackoverflow.com/questions/32490629/getting-todays-date-in-yyyy-mm-dd-in-python
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.html#
+https://pandas.pydata.org/docs/reference/api/pandas.read_sql_table.html
+https://towardsdatascience.com/sqlalchemy-python-tutorial-79a577141a91
+https://docs.sqlalchemy.org/en/14/core/engines.html#postgresql
+```
