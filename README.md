@@ -6,6 +6,8 @@ The topic for our final project involves analyzing video game trends to better u
 
 Our group quickly realized we were assembled based on our passion for video games, so picking our research topic was not so demanding. The Steam platform is the largest digital distribution platform for PC gaming, and is a fantastic resource for examining gaming trends over the last decade. We will imagine that we have been approached by a company that plans to develop and release a new title on Steam's library. Our analyses will function as a valuable asset that may inform decisions regarding the company's budget and timing of release.
 
+<a href="https://docs.google.com/presentation/d/1eH--ojHVZkzObTfnoqBwCK9TEhNptC5tD6QColkqVO8/edit#slide=id.g130427018cf_7_24">Link to Google Slides</a>
+
 ## Data References
 
 Our dataset was downloaded from Kaggle in JSON format, and provides us with various information about games offered in the Steam store.
@@ -428,7 +430,7 @@ We can repeat the code above to generate the same table for publishers.
 ### Scikit-learn(SKlearn) Machine Learning Library
 
 - Scikit-learn(SKlearn) is a robust machine learning library that provides a selection of tools for statistical modeling.
-- Features were selected based on whether they could measure a game's sucess or not. Some features we used: ```price```, ```ratings```, ```average play time```, ```release year```, ```genre```, etc. 
+- Features were selected based on whether they could measure a game's success or not. Some features we used: ```price```, ```ratings```, ```average play time```, ```release year```, ```genre```, etc. 
 - We also created two features to include in the dataset: total_ratings and length_of_time.
 - ```total_ratings``` was a calculation we made by finding the average of ```positive_ratings``` and ```negative_ratings``` columns and then totaling those numbers together.
 - ```length_of_time``` was a calculation we made by subtracting today's date from the ```release_date``` column. 
@@ -516,17 +518,14 @@ accuracy_score(y_test,y_predict)
 - Perhaps the question that we're trying to answer is too complex with the tools we're using.
 
 **Other Challenges:**
-- To subtract datetime objects, dates must be in a datetime format. The pre-processing script accomplishes this well; however, due to ```release_date``` having mixed timezones, Excel automatically converts those values to just objects or strings.
+- To subtract datetime objects, dates must be in a datetime format. The pre-processing script accomplishes this well; however, due to ```release_date``` having mixed timezones, Excel automatically converts those values to objects or strings.
 - It might be worth refactoring the pre-processing function so all date values are converted to a single time zone first so we don't run into this issue in the future.   
 
 ## Dashboard
 
 - We'd like our dashboard to be made with Dash, but is subject to change. Our fallback option is Tableau if Dash renders too difficult or time consuming.
-
 - The dashboard will include an array of visualizations along with some text boxes to provide commentary or insights for the visualizations displayed.
-
 - Our dashboard will be structured in an organized way, with the most vital observations up front, and detailed analyses on specific games, developers, or periods of time towards the back, or nested in.
-
 - The dashboard will have filters and dynamic tables that adapt to user input.
 
 ## References
